@@ -10,7 +10,7 @@ function App() {
         MUI-Bibliothek konfiguriert
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Wenn Sie diese Schaltflächen sehen, wurde das Material UI erfolgreich installiert.
+        3 Buttons mit Material UI (MUI)
       </Typography>
       <ButtonsShowcase />
     </Container>
