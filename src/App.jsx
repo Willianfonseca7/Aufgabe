@@ -7,10 +7,10 @@ function App() {
   return (
     <Container sx={{ py: 6 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Biblioteca MUI configurada
+        MUI-Bibliothek konfiguriert
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Se você está vendo este botão, o Material UI foi instalado com sucesso.
+        Wenn Sie diese Schaltflächen sehen, wurde das Material UI erfolgreich installiert.
       </Typography>
       <ButtonsShowcase />
     </Container>
