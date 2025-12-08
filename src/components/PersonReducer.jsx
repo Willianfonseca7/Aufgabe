@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react'
+import React from 'react'
+import { useImmerReducer } from 'use-immer'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -12,23 +13,22 @@ const initialState = {
   address: '',
 }
 
-function reducer(state, action) {
+function reducer(draft, action) {
   switch (action.type) {
-    case 'setName':
-      return { ...state, name: action.payload }
-    case 'setAge':
-      return { ...state, age: action.payload }
-    case 'setAddress':
-      return { ...state, address: action.payload }
+    case 'updateField': {
+      const { field, value } = action.payload
+      draft[field] = value
+      break
+    }
     case 'reset':
       return initialState
     default:
-      return state
+      return draft
   }
 }
 
 function PersonReducer() {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useImmerReducer(reducer, initialState)
 
   return (
     <Card variant="outlined">
@@ -47,20 +47,22 @@ function PersonReducer() {
             <TextField
               label="Name"
               value={state.name}
-              onChange={(e) => dispatch({ type: 'setName', payload: e.target.value })}
+              onChange={(e) => dispatch({ type: 'updateField', payload: { field: 'name', value: e.target.value } })}
               fullWidth
             />
             <TextField
               label="Alter"
               value={state.age}
-              onChange={(e) => dispatch({ type: 'setAge', payload: e.target.value })}
+              onChange={(e) => dispatch({ type: 'updateField', payload: { field: 'age', value: e.target.value } })}
               fullWidth
               inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             />
             <TextField
               label="Adresse"
               value={state.address}
-              onChange={(e) => dispatch({ type: 'setAddress', payload: e.target.value })}
+              onChange={(e) =>
+                dispatch({ type: 'updateField', payload: { field: 'address', value: e.target.value } })
+              }
               multiline
               minRows={2}
               fullWidth
