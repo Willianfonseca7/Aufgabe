@@ -1,9 +1,9 @@
 import React from 'react'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
 import CounterReducer from './components/CounterReducer.jsx'
 import PersonReducer from './components/PersonReducer.jsx'
-import Stack from '@mui/material/Stack'
 
 function App() {
   return (
