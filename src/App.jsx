@@ -9,6 +9,7 @@ import CounterReducer from './components/CounterReducer.jsx'
 import PersonReducer from './components/PersonReducer.jsx'
 import withAuth from './hocs/withAuth.jsx'
 import withLogging from './hocs/withLogging.jsx'
+import compose from './utils/compose.js'
 
 const users = [
   { id: 1, name: 'Ada Lovelace', email: 'ada@example.com' },
@@ -16,7 +17,8 @@ const users = [
   { id: 3, name: 'Grace Hopper', email: 'grace@example.com' },
 ]
 
-const ProtectedLoggedUserList = withLogging(withAuth(BasicUserList))
+const enhance = compose(withLogging, withAuth)
+const ProtectedLoggedUserList = enhance(BasicUserList)
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false)
